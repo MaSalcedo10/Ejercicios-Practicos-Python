@@ -1,11 +1,18 @@
-hora_ingreso = input("Ingrese la hora de ingreso (HH:MM): ")
-hora_salida = input("Ingrese la hora de salida (HH:MM): ")
+def convertir_a_minutos(hora_str):
+    horas, minutos = map(int, hora_str.split(':'))
+    return horas * 60 + minutos
 
-hora_ingreso = hora_ingreso.split(':')
-hora_salida = hora_salida.split(':')
+try:
+    hora_ingreso = convertir_a_minutos(input("Hora ingreso (HH:MM): "))
+except ValueError:
+    print("Formato inválido. Usa HH:MM.")
+    exit()
 
-hora_ingreso = int(hora_ingreso[0]) * 60 + int(hora_ingreso[1])
-hora_salida = int(hora_salida[0]) * 60 + int(hora_salida[1])
+try:
+    hora_salida = convertir_a_minutos(input("Hora salida (HH:MM): "))
+except ValueError:
+    print("Formato inválido. Usa HH:MM.")
+    exit()
 
 def calcular_jornada(hora_ingreso, hora_salida):
     if hora_salida < hora_ingreso:
@@ -28,4 +35,4 @@ if horas_extras(hora_ingreso, hora_salida) > 0:
     horas = horas_extra // 60
     minutos = horas_extra % 60
     print(f"Horas extras trabajadas: {horas} horas y {minutos} minutos.")
-    
+
